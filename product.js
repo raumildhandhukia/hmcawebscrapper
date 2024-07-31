@@ -137,13 +137,8 @@ async function fetchallNewArrivalProducts() {
   try {
     // Fetch products for all categories concurrently
     const fetchPromises = NewArrivalVariables.map(
-      ({ pageId, categoryId, category }) => {
-        return fetchCategoryProductsUsingEndpoints(
-          pageId,
-          categoryId,
-          category
-        );
-      }
+      ({ pageId, categoryId, category }) =>
+        fetchCategoryProductsUsingEndpoints(pageId, categoryId, category)
     );
 
     // // Wait for all categories to be processed
@@ -153,7 +148,7 @@ async function fetchallNewArrivalProducts() {
       fetchCategoryProductsUsingURL(url, category)
     );
     await Promise.all(fetchURLPromises);
-    console.log(allNewArrivalProducts);
+    return { ...allNewArrivalProducts };
   } catch (error) {
     console.error("Error fetching all products:", error);
   }
@@ -168,11 +163,17 @@ async function fetchAllSaleProducts() {
 
     // // Wait for all categories to be processed
     await Promise.all(fetchPromises);
-    console.log(allSaleProducts);
+    return [...allSaleProducts];
   } catch (error) {
     console.error("Error fetching all products:", error);
   }
 }
 
-fetchallNewArrivalProducts();
-fetchAllSaleProducts();
+export const fetchProducts = async () => {
+  const newDrop = await fetchallNewArrivalProducts();
+  const sale = await fetchAllSaleProducts();
+  return {
+    newDrop: { ...newDrop },
+    sale: [...sale],
+  };
+};
