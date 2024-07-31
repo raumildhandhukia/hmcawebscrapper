@@ -12,19 +12,30 @@ The objective of this project is to develop a web scraper to extract data from H
 7) Product URL
 
 ## Setup 
-1) Create a database on MySQL server and store the Database URL in **.env file** in this format.
+1) Using terminal, navigate to project's root directory and install packages.
+    ```
+    npm install
+    ```
+3) Initiate Prisma and sync with server.
+    ```
+    npx prisma init
+    npx prisma generate
+    npx prisma db push
+    ```
+4) Create a database on MySQL server and store the Database URL in **.env file** in this format.
 `DATABASE_URL=mysql://USER:PASSWORD@HOST:PORT/DB_NAME`
 
-2) For email notification, get your Gmail App Password. [Click on this link to get instructions on how to create Gmail App Password](https://knowledge.workspace.google.com/kb/how-to-create-app-passwords-000009237). Store sender credentials and reviever email in **.env file**.
+5) For email notification, get your Gmail App Password. [Click on this link to get instructions on how to create Gmail App Password](https://knowledge.workspace.google.com/kb/how-to-create-app-passwords-000009237). Store sender credentials and reviever email in **.env file**.
 `SENDER_GMAIL=example@gmail.com`
 `SENDER_GMAIL_APP_PASSWORD=jlkjglhjksdfghas`
 `RECEIVER_GMAIL=example2@gmail.com`
 
-3) Using terminal, navigate to project's root directory and install packages.
-`npm install`
 
-4) Scraper is scheduled to run on every Monday 3:00 AM. Run the program to start the cron.
-`node index`
+
+6) Scraper is scheduled to run on every Monday 3:00 AM. Run the program to start the cron.
+    ```
+    node index
+    ```
 
 ## Technologies Used
 Scraper script is developed using **Node.js** and scraped data is being stored on **MySQL** databse using **Prisma ORM**. Data is fetched using H&M's hidden API. Email notifications are supported through **Nodemailer** & **Gmail**. Cron Job is supported by **node-cron**.
