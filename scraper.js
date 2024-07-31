@@ -2,8 +2,8 @@ import { fetchProducts } from "./product.js";
 import { sendMail } from "./mail.js";
 import { PrismaClient } from "@prisma/client";
 const db = new PrismaClient();
-// Scrap Products
 
+// Prepare Data to be pushed to Database
 const prepareData = (newDrop, sale) => {
   const preparedNewDrop = [];
   const preparedSale = [];
@@ -56,6 +56,7 @@ const prepareData = (newDrop, sale) => {
   return { preparedNewDrop, preparedSale };
 };
 
+// Push Data to Database
 const pushToDB = async (preparedNewDrop, preparedSale) => {
   try {
     const newDropPromises = preparedNewDrop.map((pro) => {
@@ -95,6 +96,7 @@ const pushToDB = async (preparedNewDrop, preparedSale) => {
   }
 };
 
+// Main Function to execute the scraping process
 export const main = async () => {
   console.log("Running the main function");
   const { newDrop, sale } = await fetchProducts();

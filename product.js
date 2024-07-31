@@ -6,6 +6,7 @@ import {
 } from "./data.js";
 const allNewArrivalProducts = {};
 let allSaleProducts = [];
+
 // Function to fetch and process products for a single category
 async function fetchCategoryProductsUsingEndpoints(
   pageId,
@@ -86,6 +87,7 @@ async function fetchCategoryProductsUsingEndpoints(
   return products;
 }
 
+// Function to fetch and process products for a single category using URL
 async function fetchCategoryProductsUsingURL(url, category) {
   try {
     const initialURL = `${url}&offset=${0}&page-size=36`;
@@ -133,6 +135,7 @@ async function fetchCategoryProductsUsingURL(url, category) {
   }
 }
 
+// Function to fetch and process products for all new arrival categories
 async function fetchallNewArrivalProducts() {
   try {
     // Fetch products for all categories concurrently
@@ -154,6 +157,7 @@ async function fetchallNewArrivalProducts() {
   }
 }
 
+// Function to fetch and process products for all sale categories
 async function fetchAllSaleProducts() {
   try {
     // Fetch products for all categories concurrently
@@ -169,6 +173,7 @@ async function fetchAllSaleProducts() {
   }
 }
 
+// Function to fetch all products using H&M hidden API
 export const fetchProducts = async () => {
   const newDrop = await fetchallNewArrivalProducts();
   const sale = await fetchAllSaleProducts();
