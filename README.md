@@ -63,3 +63,7 @@ Handling the email notification function.
 5) data.js
 Predefined endpoints which are subset of **New Drop Items** and **Sale Items**
 
+## Database Dump:
+
+`/hmcawebscrapper/DB_DUMP/HMProducts.sql` file contains some products scraped from H&M. 
+
