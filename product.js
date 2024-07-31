@@ -147,10 +147,6 @@ async function fetchallNewArrivalProducts() {
     // // Wait for all categories to be processed
     await Promise.all(fetchPromises);
 
-    const fetchURLPromises = NewArrivalURLs.map(({ url, category }) =>
-      fetchCategoryProductsUsingURL(url, category)
-    );
-    await Promise.all(fetchURLPromises);
     return { ...allNewArrivalProducts };
   } catch (error) {
     console.error("Error fetching all products:", error);
